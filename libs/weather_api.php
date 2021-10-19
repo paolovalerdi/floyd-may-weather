@@ -50,7 +50,7 @@ class WeatherApi {
         return $predictions;
     }
 
-    public function getPrediction($temp, $pressure, $humidity, $description){
+    public function getPrediction(){
         $servername = "localhost";
         $username = "root";
         $password = "";
