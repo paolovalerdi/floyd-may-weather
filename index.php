@@ -11,6 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         function reload() {
+            include "libs/weather_api.php";
+            $api = new WeatherApi;
+            $all = $api->getPrediction()
             $.ajax({
                 url: "libs/admin_update.php",
                 type: "GET",
@@ -20,16 +23,7 @@
         }
     </script>
 
-    <?php 
-        include "libs/weather_api.php";
-
-        $api = new WeatherApi;
-
-        $all = $api->getPrediction()
-
-        echo "<h1>Clima</h1>"
-    ?>
-
+    <h1>Clima</h1>
         <form method="POST">
             <label>Tiempo:</label>
             <input type="text" id="tiempo" placeholder="soleado/numblado">
