@@ -1,5 +1,6 @@
 <?php
 
+include "prediction.php";
 
 class WeatherApi {
     private $baseUrl = "https://api.openweathermap.org/data/2.5/onecall?";
@@ -13,10 +14,6 @@ class WeatherApi {
         $username = "root";
         $password = "";
         $conn = mysqli_connect($servername, $username, $password, "weather");
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        echo "Connected successfully";
 
         $lat = 19.0414;
         $lon = -98.2063;
@@ -32,17 +29,25 @@ class WeatherApi {
             $icon = $value["weather"][0]["icon"];
             $query = "INSERT INTO predictions (temp, pressure, humidity, main, description, icon) VALUES (".$temp.", ".$pressure.", ".$humidity.", '".$main."', '".$description."', '".$icon."')";
             if ($conn->query($query) === TRUE) {
-                echo "New record created successfully";
+                echo "New record created successfully\n";
             } else {
                 echo "Error: " . $query . "<br>" . $conn->error;
             }
         }
     }
+
+    public function getAllPredictions() {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $conn = mysqli_connect($servername, $username, $password, "weather");
+        $sql = "SELECT * FROM predictions";
+        $result = $conn->query($sql);
+        $predictions = array();
+        while($row = $result->fetch_assoc()) {
+            array_push($predictions, new Prediction($row["temp"], $row["pressure"], $row["humidity"], $row["main"], $row["description"], $row["icon"]));
+        }
+        return $predictions;
+    }
 }
-
-$api = new WeatherApi;
-
-
-$api->oneCall();
-
 ?>
