@@ -25,9 +25,9 @@
 
         $api = new WeatherApi;
 
-        $all = $api->getPrediction()
+        $all = $api->getPrediction();
 
-        echo "<h1>Clima</h1>"
+        echo "<h1>Clima</h1>";
     ?>
 
         <form method="POST">
