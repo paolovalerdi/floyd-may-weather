@@ -49,5 +49,21 @@ class WeatherApi {
         }
         return $predictions;
     }
+
+    public function getPrediction($temp, $pressure, $humidity, $description){
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $conn = mysqli_connect($servername, $username, $password, "weather");
+        $sql = "SELECT * FROM predictions";
+        $result = $conn->query($sql);
+        $predicts = array();
+        while($row = $result->fetch_assoc()) {
+            array_push($predicts, new Prediction($row["temp"], $row["pressure"], $row["humidity"], $row["main"], $row["description"], $row["icon"]));
+        }
+        shuffle($predicts);
+        $val = rand(1,sizeof($predicts));
+        return array_slice($predicts,0,$val);
+    }
 }
 ?>
