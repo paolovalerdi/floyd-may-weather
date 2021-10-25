@@ -1,0 +1,50 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.weather-main-grid {
+    width: 75%;
+    margin: auto;
+    padding: 48px 0;
+
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+}
+
+.weather-predictions-title {
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.weather-predictions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.weather-prediction-card-header {
+    width: 100%;
+    margin-bottom: 16px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.weather-prediction-card-header img {
+    width: 72px;
+    height: 72px;
+}
+
+.weather-prediction-card-header h5 {
+    margin: 0;
+}
