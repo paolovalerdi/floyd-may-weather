@@ -62,7 +62,7 @@ class WeatherApi {
             array_push($predicts, new Prediction($row["temp"], $row["pressure"], $row["humidity"], $row["main"], $row["description"], $row["icon"]));
         }
         shuffle($predicts);
-        $val = rand(1,sizeof($predicts));
+        $val = rand(6, 30);
         return array_slice($predicts,0,$val);
     }
 }
