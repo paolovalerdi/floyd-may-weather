@@ -4,11 +4,23 @@
 	box-sizing: border-box;
 }
 
-.weather-main-grid {
+.weather-app-container {
     width: 75%;
     margin: auto;
     padding: 48px 0;
+}
 
+.weather-login-btn-container {    
+    width: auto;
+    margin-bottom: 24px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.weather-main-grid {
+    width: auto;
 
     display: grid;
     grid-template-columns: 1fr 2fr;
