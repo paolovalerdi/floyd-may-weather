@@ -8,7 +8,7 @@ class WeatherApi {
 
     
 
-    public function oneCall() {
+    public function oneCall($amount) {
         // ¯\_(ツ)_/¯
         $servername = "localhost";
         $username = "root";
@@ -20,19 +20,23 @@ class WeatherApi {
         $path = $this->baseUrl."lat=".$lat."&lon=".$lon."&appid=e0fdbe97393951d095147320b6cbbf1e&lang=es&units=metric";
         $result = file_get_contents($path);
         $json = json_decode($result, true);
+        $counter = 0;
         foreach ($json["hourly"] as $key => $value) {
-            $temp = $value["temp"];
-            $pressure = $value["pressure"];
-            $humidity = $value["humidity"];
-            $main = $value["weather"][0]["main"];
-            $description =  $value["weather"][0]["description"];
-            $icon = $value["weather"][0]["icon"];
-            $query = "INSERT INTO predictions (temp, pressure, humidity, main, description, icon) VALUES (".$temp.", ".$pressure.", ".$humidity.", '".$main."', '".$description."', '".$icon."')";
-            if ($conn->query($query) === TRUE) {
-                echo "New record created successfully\n";
-            } else {
-                echo "Error: " . $query . "<br>" . $conn->error;
+            if ($counter < $amount) {
+                $temp = $value["temp"];
+                $pressure = $value["pressure"];
+                $humidity = $value["humidity"];
+                $main = $value["weather"][0]["main"];
+                $description =  $value["weather"][0]["description"];
+                $icon = $value["weather"][0]["icon"];
+                $query = "INSERT INTO predictions (temp, pressure, humidity, main, description, icon) VALUES (".$temp.", ".$pressure.", ".$humidity.", '".$main."', '".$description."', '".$icon."')";
+                if ($conn->query($query) === TRUE) {
+                    echo "New record created successfully\n";
+                } else {
+                    echo "Error: " . $query . "<br>" . $conn->error;
+                }
             }
+            $counter++;
         }
     }
 
