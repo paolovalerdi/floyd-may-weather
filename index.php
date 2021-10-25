@@ -72,15 +72,15 @@
                     <div class="p-3"></div>
                     <div class="mb-3">
                         <label class="form-label">Temperatura</label>
-                        <input type="number" id="temp" name="temp" class="form-control" value="<?php echo $_GET["temp"]?>">
+                        <input type="number" id="temp" name="temp" class="form-control" value="<?php echo isset($_GET["temp"]) ? $_GET["temp"]  : "" ?>">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Humedad</label>
-                        <input type="number" id="hudimity" name="humidity" class="form-control" value="<?php echo $_GET["humidity"]?>">
+                        <input type="number" id="hudimity" name="humidity" class="form-control" value="<?php echo isset($_GET["humidity"]) ? $_GET["humidity"]  : "" ?>">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Presión</label>
-                        <input type="number" id="pressure" name="pressure" class="form-control" value="<?php echo $_GET["pressure"]?>">
+                        <input type="number" id="pressure" name="pressure" class="form-control" value="<?php echo isset($_GET["pressure"]) ? $_GET["pressure"]  : "" ?>">
                     </div>
                     <?php
                         if (isset($_GET["auth"])) {
