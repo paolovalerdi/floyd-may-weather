@@ -82,6 +82,14 @@
                         <label class="form-label">Presión</label>
                         <input type="number" id="pressure" name="pressure" class="form-control" value="<?php echo isset($_GET["pressure"]) ? $_GET["pressure"]  : "" ?>">
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="tight" <?php if (isset($_GET["type"]) && $_GET["type"] == "tight") echo "checked"?>>
+                        <label class="form-check-label" for="inlineRadio1">Diario</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="loose" <?php if (isset($_GET["type"]) && $_GET["type"] == "loose") echo "checked"?>>
+                        <label class="form-check-label" for="inlineRadio2">24 horas</label>
+                    </div>
                     <?php
                         if (isset($_GET["auth"])) {
                             $authValue = $_GET["auth"];
@@ -90,15 +98,15 @@
                             echo '<input type="hidden" id="auth" name="auth" value="0">';
                         }
                     ?>
+                    <div class="p-2"></div>
                     <button id="submit" type="submit" class="btn btn-primary">Generar</button>
                 </form>
             </div>
             <div>
                 <?php
-                    if (isset($_GET["temp"]) && isset($_GET["humidity"]) && isset($_GET["pressure"])) {
-                        include "libs/weather_api.php";
-                        $api = new WeatherApi;
-                        $predictions = $api->getPrediction();
+                    if (isset($_GET["temp"]) && isset($_GET["humidity"]) && isset($_GET["pressure"]) && isset($_GET["type"])) {
+                        include "libs/predictor/prediction_strategy.php";
+                        $predictions = PredictionStrategyFactory::create($_GET["type"])->compute($_GET["temp"], $_GET["humidity"], $_GET["pressure"]);
                         $amount = count($predictions);
 
                         echo '
