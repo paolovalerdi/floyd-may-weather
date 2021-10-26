@@ -53,12 +53,10 @@
 
 .weather-prediction-card-header {
     width: 100%;
-    margin-bottom: 16px;
 
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 }
 
 .weather-prediction-card-header img {

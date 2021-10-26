@@ -1,7 +1,7 @@
 <?php 
 include "weather_api.php";
 
-$api = new WeatherApi;
+$api = WeatherApi::create();
 
 $api->oneCall($_GET["amount"]);
 ?>

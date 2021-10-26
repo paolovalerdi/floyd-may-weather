@@ -34,7 +34,7 @@
     </script>
     <div class="weather-app-container">
         <div class="weather-admin-btn-container">
-            <button type="button" class="btn btn-danger" onclick="window.location.href='index.php'">Cerrar sesión</button>            
+            <button type="button" class="btn btn-danger" onclick="window.location.href='index.php'">Cerrar sesión</button>
         </div>
         <div class="weather-main-grid">
             <div>
@@ -48,9 +48,9 @@
             </div>
             <div>
                 <?php
-                    include "libs/weather_api.php";
-                    $api = new WeatherApi;
-                    $predictions = $api->getAllPredictions();
+                    include "libs/database.php";
+                    $db = new Database;
+                    $predictions = $db->getWhere("");
                     $amount = count($predictions);
                     echo '
                         <div class="weather-predictions-title">
@@ -64,15 +64,16 @@
                         $imageUrl = "http://openweathermap.org/img/wn/$icon@2x.png";
                         echo '
                             <div class="card text-dark">
-                                <div class="card-body">
-                                    <div class="weather-prediction-card-header">
-                                        <h5 class="card-title">'.$element->description.'</h5>
-                                        <img src="'.$imageUrl.'">
-                                    </div>
-                                    <p class="card-text">Temperatura: '.$element->temp.'</p>
-                                    <p class="card-text">Humedad: '.$element->humidity.'</p>
-                                    <p class="card-text">Presión: '.$element->pressure.'</p>
+                                <div class="weather-prediction-card-header">
+                                    <img src="'.$imageUrl.'">
+                                    <div class="p-1"></div>
+                                    <h5 class="card-title">'.$element->description.'</h5>
                                 </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-muted">Temperatura: '.$element->temp.'°C</li>
+                                    <li class="list-group-item text-muted">Humedad: '.$element->humidity.'%</li>
+                                    <li class="list-group-item text-muted">Presión: '.$element->pressure.' km/h</li>
+                                </ul>
                             </div>
                         ';
                     }
