@@ -71,15 +71,15 @@
                     <h1 style="margin: 0;">Predictor de clima</h1>
                     <div class="p-3"></div>
                     <div class="mb-3">
-                        <label class="form-label">Temperatura</label>
+                        <label class="form-label">Temperatura <span class="text-muted">°C</span></label>
                         <input type="number" id="temp" name="temp" class="form-control" value="<?php echo isset($_GET["temp"]) ? $_GET["temp"]  : "" ?>">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Humedad</label>
+                        <label class="form-label">Humedad <span class="text-muted">%</span></label>
                         <input type="number" id="hudimity" name="humidity" class="form-control" value="<?php echo isset($_GET["humidity"]) ? $_GET["humidity"]  : "" ?>">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Presión</label>
+                        <label class="form-label">Viento <span class="text-muted">(km/h)</span></label>
                         <input type="number" id="pressure" name="pressure" class="form-control" value="<?php echo isset($_GET["pressure"]) ? $_GET["pressure"]  : "" ?>">
                     </div>
                     <div class="form-check">
@@ -130,7 +130,7 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item text-muted">Temperatura: '.$element->temp.'°C</li>
                                         <li class="list-group-item text-muted">Humedad: '.$element->humidity.'%</li>
-                                        <li class="list-group-item text-muted">Presión: '.$element->pressure.' km/h</li>
+                                        <li class="list-group-item text-muted">Viento: '.$element->pressure.' km/h</li>
                                     </ul>
                                 </div>
                             ';

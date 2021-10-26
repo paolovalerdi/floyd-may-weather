@@ -72,7 +72,7 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item text-muted">Temperatura: '.$element->temp.'°C</li>
                                     <li class="list-group-item text-muted">Humedad: '.$element->humidity.'%</li>
-                                    <li class="list-group-item text-muted">Presión: '.$element->pressure.' km/h</li>
+                                    <li class="list-group-item text-muted">Viento: '.$element->pressure.' km/h</li>
                                 </ul>
                             </div>
                         ';
